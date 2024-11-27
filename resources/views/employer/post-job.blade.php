@@ -99,13 +99,13 @@
             <!-- Job Requirements -->
             <div class="form-group">
                 <label for="job-requirements">Job Requirements</label>
-                <textarea id="job-requirements" name="job_requirements" placeholder="Enter the job requirements" required></textarea>
+                <textarea id="job-requirement" name="job_requirement" placeholder="Enter the job requirements" required></textarea>
             </div>
 
             <!-- Salary Range -->
             <div class="form-group">
-                <label for="salary-range">Salary Range</label>
-                <input type="text" id="salary-range" name="salary_range" placeholder="e.g., 50,000 " required>
+                <label for="salary">Salary</label>
+                <input type="text" id="salary-range" name="salary" placeholder="e.g., 50,000 " required>
             </div>
 
             <!-- Job Type -->
@@ -122,7 +122,7 @@
             <!-- Application Deadline -->
             <div class="form-group">
                 <label for="application-deadline">Application Deadline</label>
-                <input type="date" id="application-deadline" name="application_deadline" required>
+                <input type="date" id="application-deadline" name="deadline" required>
             </div>
 
             <!-- Submit Button -->

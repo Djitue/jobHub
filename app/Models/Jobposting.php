@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Jobposting;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model
+class Jobposting extends Model
 {
     use HasFactory;
 
     /**
      * The table associated with the model.
      */
-    protected $table = 'jobs';
+    protected $table = 'jobpostings';
 
     /**
      * The attributes that are mass assignable.
@@ -21,17 +23,17 @@ class Post extends Model
         'job_title',
         'company_name',
         'location',
-        'job_requirements',
-        'salary_range',
+        'job_requirement',
+        'salary',
         'job_type',
-        'application_deadline',
+        'deadline',
     ];
 
     /**
      * The attributes that should be cast to native types.
      */
     protected $casts = [
-        'application_deadline' => 'datetime',
+        'deadline' => 'datetime',
     ];
 
     /**
@@ -77,4 +79,3 @@ class Post extends Model
                      ->orWhere('job_requirements', 'like', "%$keyword%");
     }
 }
-

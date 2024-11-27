@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('jobpostings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('employer_id'); // Foreign key for employer
@@ -19,13 +19,12 @@ return new class extends Migration
             $table->string('company_name'); // Company name as a string
             $table->string('location'); // Location as a string
             $table->text('job_requirement'); // Job requirement as text for longer descriptions
-            $table->decimal('salary', 10, 2)->nullable(); // Salary as a decimal, nullable in case it's optional
+            $table->decimal('salary', 10, 2); // Salary as a decimal, nullable in case it's optional
             $table->enum('job_type', ['full-time', 'part-time', 'contract'])->default('full-time'); // Job type as an enum
-            $table->date('deadline')->nullable(); // Deadline as a date, nullable if optional
+            $table->date('deadline'); // Deadline as a date, nullable if optional
 
 
             $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
-
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('jobpostings');
     }
 };

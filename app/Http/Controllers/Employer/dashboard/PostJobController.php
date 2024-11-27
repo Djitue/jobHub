@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Employer\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Jobposting;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostJobController extends Controller
 {
@@ -14,19 +15,18 @@ class PostJobController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the input fields
-        $validated = $request->validate([
-            'job_title' => 'required|string|max:255',
-            'company_name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'job_requirements' => 'required|string',
-            'salary_range' => 'required|string',
-            'job_type' => 'required|in:Full-time,Part-time,Contract',
-            'application_deadline' => 'required|date|after:today',
-        ]);
+        $employerId = auth()->id(); //Get the authenticated employer's user ID
 
-        // Create a new job
-        Job::create($validated);
+       Jobposting::create([
+        'employer_id' => $employerId,
+          'job_title' => request('job_title'),
+          'company_name' => request('company_name'),
+          'location' => request('location'),
+          'job_requirement' => request('job_requirement'),
+          'salary' => request('salary'),
+          'job_type' => request('job_type'),
+          'deadline' => request('deadline')
+       ]);
 
         // Redirect to a page (e.g., job listing or dashboard) with a success message
         return redirect()->route('employer.dashboard')->with('success', 'Job posted successfully!');
@@ -61,9 +61,9 @@ class PostJobController extends Controller
             'company_name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'job_requirements' => 'required|string',
-            'salary_range' => 'required|string',
+            'salary' => 'required|string',
             'job_type' => 'required|in:Full-time,Part-time,Contract',
-            'application_deadline' => 'required|date|after:today',
+            'deadline' => 'required|date|after:today',
         ]);
 
         // Find and update the job
