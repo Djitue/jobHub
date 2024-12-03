@@ -1,11 +1,11 @@
-<!-- resources/views/employer/jobs/edit.blade.php -->
 <form action="{{ route('employer.jobs.update', $job->id) }}" method="POST">
     @csrf
     @method('PUT')
+    
     <div>
         <label for="job_title">Job Title:</label>
         <input type="text" name="job_title" value="{{ $job->job_title }}" required>
-    </div>
+    </div>      
     <div>
         <label for="company_name">Company Name:</label>
         <input type="text" name="company_name" value="{{ $job->company_name }}" required>

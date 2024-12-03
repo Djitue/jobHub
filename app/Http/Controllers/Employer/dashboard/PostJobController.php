@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Employer\dashboard;
 use App\Models\Jobposting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 class PostJobController extends Controller
 {
@@ -29,7 +31,7 @@ class PostJobController extends Controller
        ]);
 
         // Redirect to a page (e.g., job listing or dashboard) with a success message
-        return redirect()->route('employer.dashboard')->with('success', 'Job posted successfully!');
+        return redirect('/employer/jobs')->with('status', 'Job created successfully!');
     }
 
     /**
@@ -58,23 +60,50 @@ class PostJobController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the input fields
-        $validated = $request->validate([
+        $rules = [
             'job_title' => 'required|string|max:255',
             'company_name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
-            'job_requirements' => 'required|string',
+            'job_requirement' => 'required|string',
             'salary' => 'required|string',
             'job_type' => 'required|in:Full-time,Part-time,Contract',
             'deadline' => 'required|date|after:today',
-        ]);
+        ];
 
-        // Find and update the job
-        $job = JobPosting::where('employer_id', auth()->id())->findOrFail($id);
-        $job->update($validated);
+            
+        // Validate the input fields
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Find the job posting by ID
+        $job = JobPosting::find($id);
+
+        if (!$job) {
+            return redirect()->route('employer.jobs.index')->with('error', 'Job not found.');
+        }
+
+        // Update job details
+
+        $job->job_title = $request->job_title;
+        $job-> company_name = $request->company_name;
+        $job-> location = $request->location;
+        $job->job_requirement = $request->job_requirement;
+        $job-> salary = $request->salary;
+        $job->job_type = $request->job_type;
+        $job->deadline = $request->deadline;
+        $job->save();
+
 
         // Redirect with a success message
         return redirect()->route('employer.jobs.index')->with('success', 'Job updated successfully!');
     }
+
+
 
     /**
      * Delete a specific job posting.

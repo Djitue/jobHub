@@ -3,6 +3,7 @@
         <h3>{{ $job->job_title }}</h3>
         <p>{{ $job->location }}</p>
         <p>{{ $job->salary }}</p>
+        <p>{{ $job->job_requirement }}</p>
         <p>Deadline: {{ $job->deadline->format('d M, Y') }}</p>
         <a href="{{ route('employer.jobs.edit', $job->id) }}">Edit</a>
         <form action="{{ route('employer.jobs.destroy', $job->id) }}" method="POST">

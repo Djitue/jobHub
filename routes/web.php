@@ -31,7 +31,7 @@ Route::prefix('employer')->middleware('auth:employer')->group(function () {
     Route::get('/post-job', [PostJobController::class, 'create'])->name('employer.post-job');
     Route::post('/postJob', [PostJobController::class, 'store'])->name('jobs.store');
     Route::get('/jobs', [PostJobController::class, 'index'])->name('employer.jobs.index');
-    Route::get('/jobs/{id}/edit', [PostJobController::class, 'edit'])->name('employer.jobs.edit');
+    Route::get('/jobs/edit/{id}', [PostJobController::class, 'edit'])->name('employer.jobs.edit');
     Route::put('/jobs/{id}', [PostJobController::class, 'update'])->name('employer.jobs.update');
     Route::delete('/jobs/{id}', [PostJobController::class, 'destroy'])->name('employer.jobs.destroy');
     Route::get('/jobs/{id}/applications', [PostJobController::class, 'viewApplications'])->name('employer.jobs.applications');

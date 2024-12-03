@@ -44,7 +44,19 @@
                             </section>
                         </div>
                     </main> --}}
-
+                    {{-- <main>
+                        <div class="dashboard-container">
+                            <!-- Sidebar -->
+                            <div class="sidebar">
+                                <ul>
+                                    <li><a href="{{ route('employer.post-job') }}">Post Job</a></li>
+                                    <li><a href="{{ route('employer.jobs.index') }}">View Jobs</a></li>
+                                    <li><a href="#manage-hiring">Manage Hiring</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                    </main> --}}
                 </div>
             </div>
         </div>
