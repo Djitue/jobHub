@@ -103,7 +103,7 @@
                 <div class="row">
                     <div class="col-12 col-xl-8">
                         <h1>Find your dream job</h1>
-                        <p>Thounsands of jobs available.</p>
+                        <p>Thounsands of jobs available for you.</p>
                         
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                                                 </div>
 
                                                 <div class="d-grid mt-3">
-                                                    <a href="job-detail.html" class="btn btn-primary btn-lg">Details</a>
+                                                    <a href="{{ route('job-detail', ['id' => $job->id]) }}" class="btn btn-primary btn-lg">Details</a>
                                                 </div>
                                             </div>
                                         </div>

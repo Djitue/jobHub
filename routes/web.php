@@ -41,6 +41,10 @@ Route::prefix('employer')->middleware('auth:employer')->group(function () {
     Route::get('/jobs/{id}/applications', [PostJobController::class, 'viewApplications'])->name('employer.jobs.applications');
 
 });
+
+Route::get('/jobs/detail/{id}', [HomeController::class, 'detail'])->name('job-detail');
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
 require __DIR__.'/employer-auth.php';
