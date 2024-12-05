@@ -8,6 +8,7 @@
         <meta name="HandheldFriendly" content="True" />
         <meta name="pinterest" content="nopin" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <!-- Fav Icon -->
         <link rel="shortcut icon" type="image/x-icon" href="#" />
@@ -110,36 +111,74 @@
             </div>
         </section>
 
-        <section class="section-1 py-5 "> 
+        {{-- <section class="section-1 py-5 "> 
             <div class="container">
                 <div class="card border-0 shadow p-5">
-                    <div class="row">
+                    <form action = "{{ route('jobs') }}" method="GET">
+                        <div class="row">
                         <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Keywords">
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords">
                         </div>
                         <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Location">
+                            <input type="text" class="form-control" name="Location" id="Location" placeholder="Location">
                         </div>
                         <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
-                            <select name="category" id="category" class="form-control">
+                            <select name="job_type" id="job_type" class="form-control">
                                 <option value="">Job Type</option>
                                 <option value="">Part-time</option>
                                 <option value="">full-time</option>
                                 <option value="">contract </option>
-                                <option value=""> </option>
                             </select>
                         </div>
                         
                         <div class=" col-md-3 mb-xs-3 mb-sm-3 mb-lg-0">
                             <div class="d-grid gap-2">
-                                <a href="jobs.html" class="btn btn-primary btn-block">Search</a>
-                            </div>
-                            
+                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </div>   
                         </div>
-                    </div>            
+                    </form>
+                                
+                </div>
+            </div>
+        </section> --}}
+
+        <section class="section-1 py-5">
+            <div class="container">
+                <div class="card border-0 shadow p-5">
+                    <form action="{{ route('jobs') }}" method="GET">
+                        <div class="row">
+                            <!-- Keyword Input -->
+                            <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
+                                <input type="text" class="form-control" name="search" id="search" placeholder="Keywords" value="{{ old('search') }}">
+                            </div>
+
+                            <!-- Location Input -->
+                            <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Location" value="{{ old('location') }}">
+                            </div>
+
+                            <!-- Job Type Dropdown -->
+                            <div class="col-md-3 mb-3 mb-sm-3 mb-lg-0">
+                                <select name="job_type" id="job_type" class="form-control">
+                                    <option value="">Job Type</option>
+                                    <option value="Part-time" {{ old('job_type') == 'Part-time' ? 'selected' : '' }}>Part-time</option>
+                                    <option value="Full-time" {{ old('job_type') == 'Full-time' ? 'selected' : '' }}>Full-time</option>
+                                    <option value="Contract" {{ old('job_type') == 'Contract' ? 'selected' : '' }}>Contract</option>
+                                </select>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="col-md-3 mb-xs-3 mb-sm-3 mb-lg-0">
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
+
 
         {{-- <section class="section-2 bg-2 py-5">
             <div class="container">
@@ -219,7 +258,7 @@
                                                         <span class="ps-1">{{ $job->job_type }}</span>
                                                     </p>
                                                     <p class="mb-0">
-                                                        <span class="fw-bolder"><i class="fa fa-usd"></i></span>
+                                                        <span class="fw-bolder"><i class="fa fa-money-bill"></i></span>
                                                         <span class="ps-1">{{ $job->salary }}</span>
                                                     </p>
                                                 </div>

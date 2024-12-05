@@ -8,6 +8,7 @@
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="pinterest" content="nopin" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="#" />
@@ -25,12 +26,12 @@
 					<li class="nav-item">
 						<a class="nav-link" aria-current="page" href="{{ route('home')}}">Home</a>
 					</li>	
-					<li class="nav-item">
+					{{-- <li class="nav-item">
 						<a class="nav-link" aria-current="page" href="jobs.html">Find Jobs</a>
-					</li>										
+					</li>										 --}}
 				</ul>				
 				<a class="btn btn-outline-primary me-2" href="{{ route('login')}}" type="submit">Login</a>
-				<a class="btn btn-primary" href="{{ route('employer.register')}}" type="submit">Post a Job</a>
+				<a class="btn btn-primary" href="{{ route('employer.login')}}" type="submit">Post a Job</a>
 			</div>
 		</div>
 	</nav>
@@ -84,15 +85,15 @@
                 <div class="card shadow border-0">
                     <div class="job_sumary">
                         <div class="summery_header pb-1 pt-4">
-                            <h3>Job Summery</h3>
+                            <h3>Job Summary</h3>
                         </div>
                         <div class="job_content pt-3">
                             <ul>
                                 <li>Published on: <span>{{\Carbon\Carbon::parse($job->created_at) -> format('d M, Y')}}</span></li>
                                 <li>Salary: <span>{{ $job->salary }}</span></li>
                                 <li>Location: <span>{{ $job->location }}</span></li>
-                                <li>Job Type: <span> {{ $job->job_title }}</span></li>
-                                {{-- <li>Job Requirement: <span> {{ $job->Requirement }}</span></li> --}}
+                                <li>Job Type: <span> {{ $job->job_type }}</span></li>
+                                <li>Job Requirement: <span> {{ $job->job_requirement }}</span></li>
                             </ul>
                         </div>
                     </div>

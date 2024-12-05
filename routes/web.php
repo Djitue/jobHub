@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobListController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Employer\dashboard\PostJobController;
 
@@ -43,6 +44,7 @@ Route::prefix('employer')->middleware('auth:employer')->group(function () {
 });
 
 Route::get('/jobs/detail/{id}', [HomeController::class, 'detail'])->name('job-detail');
+Route::get('/jobs', [JobListController::class, 'index'])->name('jobs');
 
 
 require __DIR__.'/auth.php';
